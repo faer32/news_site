@@ -10,20 +10,17 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        "heading",
-        "release_date",
-        "text",
-        "id_users",
-        "id_category"
+       "name",
+       "id_cat"
     ];
 
-    public function user()
+    public function parentCategory()
     {
-        return $this->belongsTo(User::class, 'id_users');
+        return $this->belongsTo(Category::class, 'id_cat');
     }
 
-    public function category()
+    public function childCategory()
     {
-        return $this->belongsTo(Category::class, 'id_category');
+        return $this->hasMany(Category::class, 'id_cat');
     }
 }
