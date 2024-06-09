@@ -6,7 +6,8 @@ use App\Http\Controllers\{
     RegistrationController,
     EmailVerificationPromtController,
     VerifyEmailController,
-    EmailVerificationNotificationController
+    EmailVerificationNotificationController,
+    NewsController
 };
 
 use Illuminate\Http\Request;
@@ -15,9 +16,12 @@ use Illuminate\Http\Request;
 Auth::routes(['verify' => true]);
 
 //домашняя страница
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::get('/home', [NewsController::class, 'newsOutput'])->name('home');
+
+//перенаправление на домашнюю страницу
+Route::get('/', function () {
+    return redirect('/home');
+});
 
 //подтверждение email
 Route::get('/email/verify', [EmailVerificationPromtController::class, '__invoke'])->middleware(['auth'])

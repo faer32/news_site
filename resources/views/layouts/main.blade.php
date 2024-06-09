@@ -10,23 +10,21 @@
 </head>
 <body>
     @if(!Request::is('admin*'))
-        <header>
+        <header >
             @include('inc.head_inc')
         </header>   
     @endif   
     
     <!-- Контент -->
+    <header class="margin-right-small">
+        @include('inc.category_inc')
+    </header> 
     <section>
-        <header>
-            @include('inc.category_inc')
-        </header>   
         @yield('content') 
     </section>  
-    @if(Request::is('/'))
-        <footer class="py-4 bg-dark">
-            @include('inc.footer_inc')
-        </footer>
-    @endif
+    <footer class="bg-dark">
+        @include('inc.footer_inc')
+    </footer>
 </body>
 
 </html>
