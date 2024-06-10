@@ -15,8 +15,11 @@ use Illuminate\Http\Request;
 
 Auth::routes(['verify' => true]);
 
+
 //домашняя страница
 Route::get('/home', [NewsController::class, 'newsOutput'])->name('home');
+//домашняя страница
+Route::get('/home/{name}', [NewsController::class, 'newsOutput'])->name('home');
 
 //перенаправление на домашнюю страницу
 Route::get('/', function () {

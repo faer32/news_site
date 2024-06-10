@@ -23,4 +23,5 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'id_cat');
     }
+
 }

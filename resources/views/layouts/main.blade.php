@@ -16,10 +16,10 @@
     @endif   
     
     <!-- Контент -->
-    <header class="margin-right-small">
-        @include('inc.category_inc')
-    </header> 
     <section>
+        <header class=" margin-right-small">
+            @include('inc.category_inc')
+        </header> 
         @yield('content') 
     </section>  
     <footer class="bg-dark">
