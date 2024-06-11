@@ -43,5 +43,11 @@ class NewsController extends Controller
             return abort(404, 'Такой категории не существует');
         }
 
-    }  
+    }
+    // вывод страницы статьи
+    public function show($id)
+    {
+        $article = News::with(['user', 'categories'])->findOrFail($id);
+        return view('news.news', compact('article'));
+    }
 }

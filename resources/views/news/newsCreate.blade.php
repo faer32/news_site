@@ -41,16 +41,19 @@
                         </div>
                         <div class="form-group">
                             <label for="release_date">Дата релиза</label>
-                            <input type="date" name="release_date" class="form-control" id="release_date" value="{{ $news->release_date ?? '' }}" required>
+                            <input type="datetime-local" name="release_date" class="form-control" id="release_date" value="{{ isset($news->release_date) ? \Carbon\Carbon::parse($news->release_date)->format('Y-m-d\TH:i') : '' }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="id_category">Категория</label>
-                            <select name="id_category" class="form-control" id="id_category" required>                               
+                            <label for="id_category">Категории</label>
+                            <select name="id_category[]" class="form-control" id="id_category" multiple required>                               
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" {{ old('id_category', $news->id_category ?? '') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
+                                @php
+                                    $selectedCategories = old('id_category', isset($news) ? $news->categories->pluck('id')->toArray() : []);
+                                @endphp
+                                <option value="{{ $category->id }}" {{ in_array($category->id, $selectedCategories) ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
                             </select>
                         </div>
                         <input type="hidden" name="id_users" value="{{ Auth::user()->id }}">

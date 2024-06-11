@@ -13,17 +13,19 @@
         </div>
         <ul>
             @foreach($news as $article)
-            <li>
+            <li class="homeli">
                 <h2>{{ $article->heading }}</h2>
                 <p><strong>Дата публикации:</strong> {{ $article->release_date }}</p>
-                <p>{{ $article->text }}</p>
-                <p>Автор: {{ $article->user->lastName }} {{ $article->user->name }} {{ $article->user->patronymic }}</p>
-                <p>Категория: 
+                <p>{{ \Illuminate\Support\Str::limit($article->text, 100, $end='...') }}</p>
+                <p><strong>Автор:</strong> {{ $article->user->lastName }} {{ $article->user->name }} {{ $article->user->patronymic }}</p>
+                <p><strong>Категории:</strong> 
                     @foreach($article->categories as $category)
                         {{ $category->name }}@if (!$loop->last), @endif
                     @endforeach
                 </p>
+                <a href="{{ route('news.news', $article->id) }}">Читать полностью</a>               
             </li>
+            <br>
             @endforeach
         </ul>
         <div class="">

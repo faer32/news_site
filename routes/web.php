@@ -59,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.news');
+
 //отображение формы авторизации
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 
