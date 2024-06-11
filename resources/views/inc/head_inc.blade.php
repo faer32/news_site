@@ -9,25 +9,24 @@
                 </li>
                 @auth("web")
                     <li class="nav-item">
-                        {{-- <a class="nav-link  text-white" href="{{ route('logout') }}">Выйти</a> --}}
+                        <a class="nav-link  text-white" href="{{ route('logout') }}">Выйти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{route('profile.index')}}" aria-expanded="false">
+                            Мой профиль
+                        </a>
                     </li>
                 @endauth
                 @guest("web")
                     <li class="nav-item">
-                        {{-- <a class="nav-link  text-white" href="{{ route('login') }}">Войти</a> --}}
+                        <a class="nav-link  text-white" href="{{ route('login') }}">Войти</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white" href="{{route('registration')}}" aria-expanded="false">
+                            Регистрация
+                        </a>
                     </li>
                 @endguest
-                
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#" aria-expanded="false">
-                        Мой профиль
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link text-white" href="{{route('registration')}}" aria-expanded="false">
-                        Регистрация
-                    </a>
-                </li>
             </ul>                  
         </div>
     </div>

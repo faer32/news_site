@@ -11,6 +11,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
+  margin-top: 200px;
 }
 .dropdown-toggle::after {
   content: none;
@@ -52,11 +53,11 @@ footer {
 
 .toggle-link.active {
   font-weight: bold;
-  color: gray; /* Пример: измените цвет текста */
+  color: gray;
 }
 
 /* Стиль для отключённой ссылки */
 .toggle-link.disabled {
   pointer-events: none;
-  opacity: 0.6; /* Пример: делаем ссылку полупрозрачной */
+  opacity: 0.6;
 }

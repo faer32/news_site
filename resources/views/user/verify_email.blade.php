@@ -18,7 +18,7 @@
                             <h2 class="text-center mb-4">Отправка письма на почту</h2>
                             <form action="{{route('verification.send')}}" method="get">
                                 @csrf
-                                <button type="submit" class="btn btn-dark btn-block">Войти</button>
+                                <button type="submit" class="btn btn-dark btn-block">Отправить</button>
                             </form>
                         </div>
                     </div>

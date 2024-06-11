@@ -11,7 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::rename('category', 'categories');
+        Schema::create('news_category', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('news_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::rename('categories', 'category');
+        Schema::dropIfExists('news_category');
     }
 };

@@ -13,10 +13,12 @@ class NewsController extends Controller
     {
         $path = $request->path();
         $categoryName = str_replace('home/', '', $path);
+
+        //вывод всех статей
         if ($categoryName == 'home')
         {
-            $news = News::with('user', 'category')->paginate(10)->appends($request->all());
-
+            $news = News::with('user', 'categories')->paginate(10)->appends($request->all());
+            // dd($news);
             return view('home', [
                 'news' => $news
             ]);
@@ -24,11 +26,14 @@ class NewsController extends Controller
 
         $category = Category::where('name', $categoryName)->first();
         
+        //вывод статей по конкретной категории
         if ($category) 
         {
-            $news = News::where('id_category', $category->id)
-                ->with('user', 'category')
-                ->paginate(10)
+            $news = News::whereHas('categories', function ($query) use ($category) {
+                $query->where('categories.id', $category->id);
+            })
+                ->with('user', 'categories')
+                ->paginate(5)
                 ->appends($request->all());
 
             return view('home', [

@@ -17,13 +17,14 @@ class News extends Model
         "id_category"
     ];
 
+    // определяет отношение с автором
     public function user()
     {
         return $this->belongsTo(User::class, 'id_users');
     }
-
-    public function category()
+    // определяет отношение с категориями
+    public function categories()
     {
-        return $this->belongsTo(Category::class, 'id_category');
+        return $this->belongsToMany(Category::class, 'news_category');
     }
 }

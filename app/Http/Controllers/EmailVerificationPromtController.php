@@ -12,6 +12,6 @@ class EmailVerificationPromtController extends Controller
     {
         return $request->user()->hasVerifiedEmail()
         ? redirect()->intended(RouteServiceProvider::HOME)
-        : view('user.verify_email.blade');
+        : view('user.verify_email');
     }
 }

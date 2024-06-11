@@ -32,6 +32,6 @@ class RegistrationController extends Controller
             auth("web")->login($user);
         }
 
-        return redirect(route(("home")));
+        return redirect(('/'));
     }
 }

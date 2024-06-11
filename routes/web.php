@@ -7,11 +7,13 @@ use App\Http\Controllers\{
     EmailVerificationPromtController,
     VerifyEmailController,
     EmailVerificationNotificationController,
-    NewsController
+    NewsController,
+    ProfileController,
+    AuthController
 };
 
 use Illuminate\Http\Request;
-
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Auth::routes(['verify' => true]);
 
@@ -23,7 +25,7 @@ Route::get('/home/{name}', [NewsController::class, 'newsOutput'])->name('home');
 
 //перенаправление на домашнюю страницу
 Route::get('/', function () {
-    return redirect('/home');
+    return redirect('home');
 });
 
 //подтверждение email
@@ -43,3 +45,23 @@ Route::get('/registration', [RegistrationController::class, 'showRegistrationFor
 
 //регистрация
 Route::post('/register_process', [RegistrationController::class, 'register'])->name('register_process');
+
+//профиль
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/create', [ProfileController::class, 'create'])->name('profile.create');
+    Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
+    Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //отображение формы авторизации
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+//отображение формы авторизации
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+
+
+//процесс авторизации
+Route::post('/login_process', [AuthController::class, 'login_process'])->name('login_process');

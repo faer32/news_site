@@ -17,14 +17,16 @@
     
     <!-- Контент -->
     <section>
-        <header class=" margin-right-small">
-            @include('inc.category_inc')
-        </header> 
+        @if(Request::is('home*'))
+            <header class=" margin-right-small">
+                @include('inc.category_inc')
+            </header> 
+        @endif
         @yield('content') 
     </section>  
-    <footer class="bg-dark">
+    {{-- <footer class="bg-dark">
         @include('inc.footer_inc')
-    </footer>
+    </footer> --}}
 </body>
 
 </html>

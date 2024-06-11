@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.main')
 
 @section('content')           
 <!-- Контент -->
@@ -17,8 +17,8 @@
                             <form action="{{ route('login_process') }}" method="post">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Имя пользователя</label>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="Введите ваше имя пользователя" required minlength="5">
+                                    <label for="email" class="form-label">Электронная почта</label>
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Введите вашу электронную почту" required minlength="5">
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Пароль</label>
@@ -56,22 +56,7 @@
                                 {{-- <a href="{{ route('email') }}">Забыли пароль?</a> |  --}}
                                 <a href="{{ route('registration') }}">Создать аккаунт</a>
                             </div>
-                            <hr>
-                            <div class="text-center">
-                                <p>Или авторизуйтесь через:</p>
-                                <a href="#" class="btn btn-dark">
-                                    <img class="mx-1" src="/images/icons/google.svg" alt="Catalog Icon" width="16" height="16">
-                                    Google
-                                </a>
-                                <a href="#" class="btn btn-dark">
-                                    <img class="mx-1" src="/images/icons/facebook.svg" alt="Catalog Icon" width="16" height="16">
-                                    Facebook
-                                </a>
-                                <a href="#" class="btn btn-dark">
-                                    <img class="mx-1" src="/images/icons/github.svg" alt="Catalog Icon" width="16" height="16">
-                                    GitHub
-                                </a>
-                            </div>
+                            <hr>                            
                         </div>
                     </div>
                 </div>

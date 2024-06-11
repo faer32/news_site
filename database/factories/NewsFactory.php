@@ -20,7 +20,6 @@ class NewsFactory extends Factory
             'release_date' => $this->faker->date,
             'text' => $this->faker->paragraphs(3, true),
             'id_users' => User::factory(),
-            'id_category' => Category::factory(),
         ];
     }
 }
